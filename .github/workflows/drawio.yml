@@ -25,8 +25,11 @@ jobs:
         with:
             format: png
             path: src/dff
-            output: src/dff
+            output: .
             action-mode: all
+
+      - name: Rename Files
+        run: rename s/-Page-\d*// src/dff/*.png
 
       - name: Print Output
         run: tree src
