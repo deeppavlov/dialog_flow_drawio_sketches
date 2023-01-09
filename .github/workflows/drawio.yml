@@ -4,7 +4,7 @@ on:
   push:
 
 jobs:
-  generate_and_publish_documentation:
+  generate_and_build_images:
     name: Generate Images from .drawio
     runs-on: ubuntu-latest
 
