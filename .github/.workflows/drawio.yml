@@ -1,0 +1,32 @@
+name: DRAWIO
+
+on:
+  push:
+
+jobs:
+  generate_and_publish_documentation:
+    name: Generate Images from .drawio
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Tree
+        run: sudo apt-get install tree
+
+      - name: Render .drawio Files
+        uses: docker://ghcr.io/racklet/render-drawio-action:v1
+        with:
+          args: '"--sub-dirs=src/dfe" "--formats=png"'
+
+      - name: Render .drawio Files
+        uses: rlespinasse/drawio-export-action@v2
+        with:
+            format: png
+            path: src/dff
+            output: src/dff
+            action-mode: all
+
+      - name: Print Output
+        run: tree src
